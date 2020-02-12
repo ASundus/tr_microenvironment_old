@@ -214,6 +214,68 @@ void setup_microenvironment( void )
 	// extra Dirichlet nodes here. 
 	
 	// initialize BioFVM 
+	bool make_Dirichlet_right=parameters.bools("Apply_Dirichlet_on_right_edge");
+	bool make_Dirichlet_left=parameters.bools("Apply_Dirichlet_on_left_edge");
+	bool make_Dirichlet_top=parameters.bools("Apply_Dirichlet_on_top_edge");
+	bool make_Dirichlet_bottom=parameters.bools("Apply_Dirichlet_on_bottom_edge");
+	if (make_Dirichlet_top==true)
+	{
+				for( unsigned int k=0 ; k < microenvironment.mesh.z_coordinates.size() ; k++ )
+		{
+			// set Dirichlet conditions along the 4 outer edges 
+			for( unsigned int i=0 ; i < microenvironment.mesh.x_coordinates.size() ; i++ )
+			{
+				//int J = microenvironment.mesh.y_coordinates.size()-1;
+				microenvironment.add_dirichlet_node( microenvironment.voxel_index(i,0,k) , default_microenvironment_options.Dirichlet_condition_vector );
+				//microenvironment.add_dirichlet_node( microenvironment.voxel_index(i,J,k) , default_microenvironment_options.Dirichlet_condition_vector );
+			}
+			
+		}
+	}
+	if (make_Dirichlet_bottom==true)
+	{
+				for( unsigned int k=0 ; k < microenvironment.mesh.z_coordinates.size() ; k++ )
+		{
+			// set Dirichlet conditions along the 4 outer edges 
+			for( unsigned int i=0 ; i < microenvironment.mesh.x_coordinates.size() ; i++ )
+			{
+				int J = microenvironment.mesh.y_coordinates.size()-1;
+				//microenvironment.add_dirichlet_node( microenvironment.voxel_index(i,0,k) , default_microenvironment_options.Dirichlet_condition_vector );
+				microenvironment.add_dirichlet_node( microenvironment.voxel_index(i,J,k) , default_microenvironment_options.Dirichlet_condition_vector );
+			}
+				
+		}
+		
+	}
+	if (make_Dirichlet_left==true)
+	{
+				for( unsigned int k=0 ; k < microenvironment.mesh.z_coordinates.size() ; k++ )
+		{
+			// set Dirichlet conditions along the 4 outer edges 
+			int I = microenvironment.mesh.x_coordinates.size()-1;
+			for( unsigned int j=1; j < microenvironment.mesh.y_coordinates.size()-1 ; j++ )
+			{
+				microenvironment.add_dirichlet_node( microenvironment.voxel_index(0,j,k) , default_microenvironment_options.Dirichlet_condition_vector );
+				//microenvironment.add_dirichlet_node( microenvironment.voxel_index(I,j,k) , default_microenvironment_options.Dirichlet_condition_vector );
+			}		
+		}
+	}
+	if (make_Dirichlet_right==true)
+	{
+		for( unsigned int k=0 ; k < microenvironment.mesh.z_coordinates.size() ; k++ )
+		{
+			// set Dirichlet conditions along the 4 outer edges 
+			int I = microenvironment.mesh.x_coordinates.size()-1;
+			for( unsigned int j=1; j < microenvironment.mesh.y_coordinates.size()-1 ; j++ )
+			{
+				//microenvironment.add_dirichlet_node( microenvironment.voxel_index(0,j,k) , default_microenvironment_options.Dirichlet_condition_vector );
+			microenvironment.add_dirichlet_node( microenvironment.voxel_index(I,j,k) , default_microenvironment_options.Dirichlet_condition_vector );
+			}		
+		}
+		
+		
+	}
+	
 	
 	initialize_microenvironment();
 	bool make_Dirichlet_node=parameters.bools("make_Dirichlet_node");
