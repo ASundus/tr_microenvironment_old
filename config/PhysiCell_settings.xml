@@ -123,7 +123,7 @@
 			<initial_condition units="mmHg">38.0</initial_condition>
 			<Dirichlet_boundary_condition units="mmHg" enabled="true">38.0</Dirichlet_boundary_condition>
 		</variable>
-		<variable name="Glucose" units="Mol" ID="1">
+		<variable name="Chemical_A" units="Mol" ID="1">
 			<physical_parameter_set>
 				<diffusion_coefficient units="micron^2/min">10.0</diffusion_coefficient>
 				<decay_rate units="1/min">0.1</decay_rate>  
@@ -155,10 +155,10 @@
 		<Apply_Dirichlet_on_bottom_edge type="bool">true</Apply_Dirichlet_on_bottom_edge>
 		
 		<make_Dirichlet_node type="bool">true</make_Dirichlet_node>
-		<Dirichlet_node_position_x type="double">0.0</Dirichlet_node_position_x>
-		<Dirichlet_node_position_y type="double">0.0</Dirichlet_node_position_y>
-		<Concentration_of_oxygen type="double">0.0</Concentration_of_oxygen>
-		<Concentration_of_Glucose type="double">0.0</Concentration_of_Glucose>
+		<Dirichlet_node_position_x type="double" description = "value on x-axis for dirichlet node; make sure it is within domain size">100.0</Dirichlet_node_position_x>
+		<Dirichlet_node_position_y type="double" description = "value on y-axis for dirichlet node; make sure it is within domain size">100.0</Dirichlet_node_position_y>
+		<Concentration_of_oxygen type="double"  description = "concentration of oxygen at this specific Dirichlet node">0.0</Concentration_of_oxygen>
+		<Concentration_of_Chemical_A type="double" description = "concentration of Chemical_A at this specific Dirichlet node">0.0</Concentration_of_Chemical_A>
 	</user_parameters>
 	
 </PhysiCell_settings>

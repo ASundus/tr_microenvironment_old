@@ -285,7 +285,7 @@ if (make_Dirichlet_node==true)
 {
 	std::vector<double> bc_vector( 2 );
 	bc_vector[0]=parameters.doubles("Concentration_of_oxygen");//getvalue
-	bc_vector[1]=parameters.doubles("Concentration_of_Glucose");//getvalue
+	bc_vector[1]=parameters.doubles("Concentration_of_Chemical_A");//getvalue
 	double x= parameters.doubles("Dirichlet_node_position_x");//getx vale:
 	double y=  parameters.doubles("Dirichlet_node_position_y");//get yvalue
 	std::vector<double> position(2);
